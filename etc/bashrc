@@ -1,0 +1,4 @@
+if [[ -f /opt/local/share/nvm/init-nvm.sh ]]; then
+	source /opt/local/share/nvm/init-nvm.sh
+fi
+

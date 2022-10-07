@@ -1,0 +1,60 @@
+filetype plugin indent on
+syntax on
+colorscheme codedark
+
+runtime macros/matchit.vim
+
+set autoindent
+set autoread
+set background=dark
+set backspace=indent,eol,start
+set foldlevel=99
+set foldmethod=syntax
+set hidden
+set incsearch
+set ignorecase
+set laststatus=2
+set noshowmode
+set number
+set showcmd
+set splitbelow
+set splitright
+set title
+set wildmenu
+
+" Quick save
+noremap <Leader>s :update<CR>
+
+" When editing a file, always jump to the last known cursor position.
+" Based on defaults.vim
+autocmd BufReadPost *
+  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \ |   exe "normal! g`\""
+  \ | endif
+
+" Compare buffer with saved version
+" Based on defaults.vim
+command! Difforig let originaltype=&filetype | vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | let &filetype=originaltype | wincmd p | diffthis
+noremap <Leader>d :Difforig<CR>
+
+" Plugins
+
+" lightline
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
+
+" vim-go
+let g:go_def_mapping_enabled = 0
+let g:go_doc_keywordprg_enabled = 0
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
