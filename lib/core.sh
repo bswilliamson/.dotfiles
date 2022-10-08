@@ -9,33 +9,57 @@ error() {
 trap 'error "$BASH_COMMAND" $?' ERR
 
 # Constants
-export ROOT_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")/..")"
-export CONFIG_DIR="$ROOT_DIR/etc"
-export PKG_DIR="$ROOT_DIR/src"
-export VIM_PLUGINS_DIR=~/.vim/pack/plugins/start
+ROOT_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")/..")"
+CONFIG_DIR="$ROOT_DIR/etc"
+PKG_DIR="$ROOT_DIR/src"
+VIM_PLUGINS_DIR=~/.vim/pack/plugins/start
+
+# Options
+set +u
+if [[ -z $CLEAN ]]; then
+	CLEAN=0
+fi
+set -u
 
 # Utility functions
 
-clean_clone() {
+download_repo() {
 	local name=$1
 	local version=$2
 	local repo=$3
-	
+
 	local dir="$PKG_DIR/$name"
-	rm -rf "$dir"
+	
+	if (( $CLEAN == 0 )) && [[ -d $dir ]]; then
+		cd $dir
+		return
+	fi
+
+	sudo rm -rf "$dir"
 	git clone --branch="$version" --config="advice.detachedHead=false" --depth=1 "$repo" "$dir"
 	cd $dir
 }
 
-clean_curl() {
-	local name=$1
-	local url=$2
+download_file() {
+	local pkg_name=$1
+	local file_name=$2
+	local url=$3
+
+	local dir="$PKG_DIR/$pkg_name"
+
+	if (( $CLEAN == 0 )) && [[ -f "$dir/$file_name" ]] ; then
+		cd $dir
+		return
+	fi
 	
-	local dir="$PKG_DIR/$name"
-	rm -rf "$dir"
+	sudo rm -rf "$dir"
 	mkdir -p $dir
 	cd $dir
-	curl -LO "$url"
+	if [[ $file_name == "-" ]]; then
+		curl -LO "$url"
+	else
+		curl -Lo "$file_name" "$url"
+	fi
 }
 
 vim_add_plugin() {
@@ -43,7 +67,7 @@ vim_add_plugin() {
 	local version=$2
 	local repo=$3
 
-	clean_clone "$name" "$version" "$repo"
+	download_repo "$name" "$version" "$repo"
 
 	mkdir -p "$VIM_PLUGINS_DIR"
 	ln -sf "$(pwd)" "$VIM_PLUGINS_DIR"/"$name"

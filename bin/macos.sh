@@ -9,7 +9,7 @@ install_macports() {
 		return
 	fi
 	
-	clean_clone macports v2.7.2 https://github.com/macports/macports-base.git
+	download_repo macports v2.7.2 https://github.com/macports/macports-base.git
 
 	sudo ./configure --enable-readline
 	sudo make
