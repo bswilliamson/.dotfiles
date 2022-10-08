@@ -51,6 +51,25 @@ install_go() {
 	sudo port -N install go
 }
 
+install_vscode() {
+	app_name="Visual Studio Code.app"
+
+	if (( CLEAN == 0 )) && [[ -e "/Applications/$app_name" ]]; then
+		return
+	fi
+
+	os=darwin
+	if [[ "$(uname -m)" == "arm64" ]]; then
+		os=darwin-arm64
+	fi
+
+	download_file vscode vscode.zip "https://code.visualstudio.com/sha/download?build=stable&os=$os"
+	unzip -oq vscode.zip
+	sudo chown 0:0 "$app_name"
+	sudo rm -rf "/Applications/$app_name"
+	sudo mv "$app_name" /Applications/
+}
+
 install_macports
 install_tmux
 install_node
@@ -58,3 +77,4 @@ install_neovim
 install_vim_plugins
 configure_neovim
 install_go
+install_vscode
