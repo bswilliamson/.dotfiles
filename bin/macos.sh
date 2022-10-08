@@ -30,7 +30,7 @@ install_macports_packages() {
 
 	sudo port -N install ${pkgs[@]}
 
-	if (( $CLEAN == 1 )); then
+	if (( $UPGRADE == 1 )); then
 		sudo port upgrade ${pkgs[@]}
 	fi
 }
@@ -54,7 +54,7 @@ configure_neovim() {
 install_vscode() {
 	app_name="Visual Studio Code.app"
 
-	if (( CLEAN == 0 )) && [[ -e "/Applications/$app_name" ]]; then
+	if (( UPGRADE == 0 )) && [[ -e "/Applications/$app_name" ]]; then
 		return
 	fi
 

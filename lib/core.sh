@@ -16,8 +16,8 @@ VIM_PLUGINS_DIR=~/.vim/pack/plugins/start
 
 # Options
 set +u
-if [[ -z $CLEAN ]]; then
-	CLEAN=0
+if [[ -z $UPGRADE ]]; then
+	UPGRADE=0
 fi
 set -u
 
@@ -30,7 +30,7 @@ download_repo() {
 
 	local dir="$PKG_DIR/$name"
 	
-	if (( $CLEAN == 0 )) && [[ -d $dir ]]; then
+	if (( $UPGRADE == 0 )) && [[ -d $dir ]]; then
 		cd $dir
 		return
 	fi
@@ -47,7 +47,7 @@ download_file() {
 
 	local dir="$PKG_DIR/$pkg_name"
 
-	if (( $CLEAN == 0 )) && [[ -f "$dir/$file_name" ]] ; then
+	if (( $UPGRADE == 0 )) && [[ -f "$dir/$file_name" ]] ; then
 		cd $dir
 		return
 	fi
