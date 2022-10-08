@@ -19,17 +19,20 @@ install_macports() {
 	sudo port -v selfupdate
 }
 
-install_tmux() {
-	sudo port -N install tmux
-}
+install_macports_packages() {
+	pkgs=(
+		go
+		neovim
+		nodejs16
+		npm8
+		tmux
+	)
 
-install_node() {
-	sudo port -N install nodejs16
-	sudo port -N install npm8
-}
+	sudo port -N install ${pkgs[@]}
 
-install_neovim() {
-	sudo port -N install neovim
+	if (( $CLEAN == 1 )); then
+		sudo port upgrade ${pkgs[@]}
+	fi
 }
 
 configure_neovim() {
@@ -47,9 +50,6 @@ configure_neovim() {
 	ln -sf "$CONFIG_DIR/coc.vim" ~/.vim/after/plugin/
 }
 
-install_go() {
-	sudo port -N install go
-}
 
 install_vscode() {
 	app_name="Visual Studio Code.app"
@@ -71,10 +71,7 @@ install_vscode() {
 }
 
 install_macports
-install_tmux
-install_node
-install_neovim
+install_macports_packages
 install_vim_plugins
 configure_neovim
-install_go
 install_vscode
