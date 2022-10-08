@@ -11,7 +11,7 @@ trap 'error "$BASH_COMMAND" $?' ERR
 # Constants
 ROOT_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")/..")"
 CONFIG_DIR="$ROOT_DIR/etc"
-PKG_DIR="$ROOT_DIR/src"
+PKG_DIR="$ROOT_DIR/pkg"
 VIM_PLUGINS_DIR=~/.vim/pack/plugins/start
 
 # Options
