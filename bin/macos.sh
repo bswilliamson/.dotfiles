@@ -54,7 +54,7 @@ configure_neovim() {
 install_vscode() {
 	app_name="Visual Studio Code.app"
 
-	if (( UPGRADE == 0 )) && [[ -e "/Applications/$app_name" ]]; then
+	if (( UPGRADE == 0 )) && [[ -d "/Applications/$app_name" ]]; then
 		return
 	fi
 

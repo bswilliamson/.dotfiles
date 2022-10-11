@@ -100,10 +100,10 @@ configure_shell() {
 	local profile=$CONFIG_DIR/profile
 	local bashrc=$CONFIG_DIR/bashrc
 
-	add_line ~/.profile "[ -e \"$profile\" ] && . \"$profile\""
-	add_line ~/.zprofile "[ -e ~/.profile ] && . ~/.profile"
-	add_line ~/.bashrc "[ -e \"$bashrc\" ] && . \"$bashrc\""
-	add_line ~/.zshrc "[ -e ~/.bashrc ] && . ~/.bashrc"
+	add_line ~/.profile "[ -f \"$profile\" ] && . \"$profile\""
+	add_line ~/.zprofile "[ -f ~/.profile ] && . ~/.profile"
+	add_line ~/.bashrc "[ -f \"$bashrc\" ] && . \"$bashrc\""
+	add_line ~/.zshrc "[ -f ~/.bashrc ] && . ~/.bashrc"
 
 	source "$profile"
 	source "$bashrc"
