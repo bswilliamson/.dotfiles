@@ -45,11 +45,8 @@ configure_neovim() {
 
 	mkdir -p ~/.vim/
 	ln -sf "$CONFIG_DIR/vimrc" ~/.vim/vimrc
-
-	mkdir -p ~/.vim/after/plugin/
-	ln -sf "$CONFIG_DIR/coc.vim" ~/.vim/after/plugin/
+	ln -sf "$CONFIG_DIR/lsp.lua" ~/.vim/lsp.lua
 }
-
 
 install_vscode() {
 	app_name="Visual Studio Code.app"

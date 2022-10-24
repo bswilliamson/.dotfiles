@@ -87,11 +87,19 @@ add_line() {
 
 # requires node
 install_vim_plugins() {
-	vim_add_plugin vim-code-dark master https://github.com/tomasiser/vim-code-dark.git
-	vim_add_plugin vim-lightline master https://github.com/itchyny/lightline.vim
-	vim_add_plugin vim-go master https://github.com/fatih/vim-go.git
-	vim_add_plugin fugitive master https://tpope.io/vim/fugitive.git
-	vim_add_plugin coc.nvim release https://github.com/neoclide/coc.nvim.git
+	vim_add_plugin vim-code-dark  master https://github.com/tomasiser/vim-code-dark.git
+	vim_add_plugin vim-lightline  master https://github.com/itchyny/lightline.vim
+	vim_add_plugin vim-go         master https://github.com/fatih/vim-go.git
+	vim_add_plugin vim-fugitive   master https://tpope.io/vim/fugitive.git
+	vim_add_plugin nvim-lspconfig master https://github.com/neovim/nvim-lspconfig
+	# nvim-cmp
+	vim_add_plugin nvim-cmp                    main   https://github.com/hrsh7th/nvim-cmp.git
+	vim_add_plugin cmp-buffer                  main   https://github.com/hrsh7th/cmp-buffer.git
+	vim_add_plugin cmp-cmdline                 main   https://github.com/hrsh7th/cmp-cmdline.git
+	vim_add_plugin cmp-path                    main   https://github.com/hrsh7th/cmp-path.git
+	vim_add_plugin cmp-nvim-lsp                main   https://github.com/hrsh7th/cmp-nvim-lsp.git
+	vim_add_plugin cmp-nvim-lsp-signature-help main   https://github.com/hrsh7th/cmp-nvim-lsp-signature-help.git
+	vim_add_plugin vim-vsnip                   master https://github.com/hrsh7th/vim-vsnip.git
 }
 
 # Platform indpendent functions that can be invoked now.

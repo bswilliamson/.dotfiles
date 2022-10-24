@@ -8,6 +8,7 @@ set autoindent
 set autoread
 set background=dark
 set backspace=indent,eol,start
+set completeopt=menu,menuone,noselect
 set foldlevel=99
 set foldmethod=syntax
 set hidden
@@ -17,10 +18,13 @@ set laststatus=2
 set noshowmode
 set number
 set showcmd
+set signcolumn=yes
 set splitbelow
 set splitright
 set title
 set wildmenu
+
+let mapleader=' '
 
 " Quick save
 noremap <Leader>s :update<CR>
@@ -58,3 +62,9 @@ let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_highlight_variable_assignments = 1
+
+
+" nvim specific config
+if has('nvim')
+	source ~/.vim/lsp.lua
+endif
