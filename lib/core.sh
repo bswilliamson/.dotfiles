@@ -87,11 +87,13 @@ add_line() {
 
 # requires node
 install_vim_plugins() {
-	vim_add_plugin vim-code-dark  master https://github.com/tomasiser/vim-code-dark.git
-	vim_add_plugin vim-lightline  master https://github.com/itchyny/lightline.vim
-	vim_add_plugin vim-go         master https://github.com/fatih/vim-go.git
-	vim_add_plugin vim-fugitive   master https://tpope.io/vim/fugitive.git
-	vim_add_plugin nvim-lspconfig master https://github.com/neovim/nvim-lspconfig
+	vim_add_plugin vim-code-dark   master https://github.com/tomasiser/vim-code-dark.git
+	vim_add_plugin vim-lightline   master https://github.com/itchyny/lightline.vim
+	vim_add_plugin vim-go          master https://github.com/fatih/vim-go.git
+	vim_add_plugin vim-fugitive    master https://tpope.io/vim/fugitive.git
+	vim_add_plugin vim-delimitmate master https://github.com/Raimondi/delimitMate.git
+	vim_add_plugin nvim-lspconfig  master https://github.com/neovim/nvim-lspconfig
+
 	# nvim-cmp
 	vim_add_plugin nvim-cmp                    main   https://github.com/hrsh7th/nvim-cmp.git
 	vim_add_plugin cmp-buffer                  main   https://github.com/hrsh7th/cmp-buffer.git
